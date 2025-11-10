@@ -18,7 +18,7 @@ A basic command line to run this pipeline would be (assuming the existence of in
 run stenglein-lab/align_and_tree -profile singularity --fasta my_sequences.fasta
 ```
 
-See [here]() for more information on running the pipeline.
+See [here](https://github.com/stenglein-lab/general_pipeline_instructions) for more information on how to run this pipeline.
 
 ### Output
 
@@ -36,7 +36,7 @@ The output directory name can be [overriden](https://www.nextflow.io/docs/latest
 
 ### Dependencies
 
-This workflow uses - and requires - nextflow and singularity to handle dependencies (i.e. MAFFT and iqtree).  See [here]() for more information on the associated requirements.
+This workflow uses - and requires - nextflow and singularity to handle dependencies (i.e. MAFFT and iqtree).  See [here](https://github.com/stenglein-lab/general_pipeline_instructions?tab=readme-ov-file#Software-dependencies) for more information on the associated requirements.
 
 ### Citations
 
