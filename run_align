@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# this runs a simple nextflow workflow
+# that creates alignment(s) and then trees 
+# from one or more sets of sequences 
+
+nextflow run align_and_tree.nf \
+ -resume \
+ -profile singularity \
+ --fasta '../input/*CDS.fasta'
