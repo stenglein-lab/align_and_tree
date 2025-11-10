@@ -1,7 +1,9 @@
 # align_and_tree
 This is a simple reproducible nextflow pipeline that will make alignments (using MAFFT) and phylogenetic trees (using iqtree) from one or more sets of nucleotide or protein sequences.
 
-It creates alignments using MAFFT, using default parametes, and then creates trees from the resulting alignments using iqtree (see [here]() for parameters).  This workflow should work for either nucleotide or protein sequences, because neither MAFFT nor iqtree are run in a way that specifies sequence type.  
+It creates alignments using MAFFT, using default parametes, and then creates trees from the resulting alignments using iqtree (iqtree parameters are [specified in the main nextflow file](https://github.com/stenglein-lab/align_and_tree/blob/eb3cc3eda87509c9f6fd8094fdf50d792c0ff5d3/align_and_tree.nf#L124)).  
+
+This workflow should work for either nucleotide or protein sequences, because neither MAFFT nor iqtree are run in a way that specifies sequence type.  
 
 ### Important caveats
 
@@ -22,11 +24,14 @@ See [here]() for more information on running the pipeline.
 
 The main outputs will be placed in `results/alignments` and `results/trees` sub-directories.  These include:
 
-- `results/alignments/*`:  multiple sequence alignment(s)
-- `results/alignments/*.log`: iqtree log file(s)
-- `results/alignments/*.treefile`: iqtree .treefile, containing the maximum likelihood tree with support values from both aLRT and bootstrapping.  The support values are in the form: SH-aLRT/UFBoot, where SH-aLRT is the support value from Shimodaira–Hasegawa approximate likelihood ratio testing and the UFBoot is the support value from ultrafast bootstrapping.
-- `results/alignments/*.contree`: iqtree .contree, containing the boostrapping consensus tree and associated support values.
-- `results/alignments/*.iqtree`: file containing log information, various trees in newick and text formats, etc. 
+| File(s) | Contents | 
+| :--- | :--- |
+
+|`results/alignments/*` |  multiple sequence alignment(s) |
+|`results/alignments/*.log` |  iqtree log file(s) |
+|`results/alignments/*.treefile` |  iqtree .treefile, containing the maximum likelihood tree with support values from both aLRT and bootstrapping.  The support values are in the form: SH-aLRT/UFBoot, where SH-aLRT is the support value from Shimodaira–Hasegawa approximate likelihood ratio testing and the UFBoot is the support value from ultrafast bootstrapping. |
+|`results/alignments/*.contree` | iqtree .contree, containing the boostrapping consensus tree and associated support values. |
+|`results/alignments/*.iqtree` | file containing log information, various trees in newick and text formats, etc. |
 
 The output directory name can be [overriden](https://www.nextflow.io/docs/latest/workflow.html#publishing-files) using the `-output-dir` command line parameter.
 
