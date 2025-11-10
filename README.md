@@ -26,7 +26,6 @@ The main outputs will be placed in `results/alignments` and `results/trees` sub-
 
 | File(s) | Contents | 
 | :--- | :--- |
-
 |`results/alignments/*` |  multiple sequence alignment(s) |
 |`results/alignments/*.log` |  iqtree log file(s) |
 |`results/alignments/*.treefile` |  iqtree .treefile, containing the maximum likelihood tree with support values from both aLRT and bootstrapping.  The support values are in the form: SH-aLRT/UFBoot, where SH-aLRT is the support value from Shimodaira–Hasegawa approximate likelihood ratio testing and the UFBoot is the support value from ultrafast bootstrapping. |
