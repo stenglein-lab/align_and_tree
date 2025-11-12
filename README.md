@@ -22,7 +22,7 @@ See [here](https://github.com/stenglein-lab/general_pipeline_instructions) for m
 
 ### Running test datasets
 
-The pipeline includes a couple small test datasets: sets of influenza A virus segment 4 (HA) nucleotide and protein RefSeq sequences: N=7 each.  These can be used to confirm that you have correct installations of the software needed to run the pipeline (namely singularity and nextflow).  To run the test datasets, use the [run_test](./run_test) or [run_test_github](./run_test_github) scripts.  [See here](https://github.com/stenglein-lab/general_pipeline_instructions) for more information on dependencies and running test datasets.
+The pipeline includes a couple small test datasets: sets of influenza A virus segment 4 (HA) [nucleotide](test/influenza_virus_A_HA_nucleotide.fasta) and [protein](test/influenza_virus_A_HA_protein.fasta) RefSeq sequences: N=7 each.  These can be used to confirm that you have correct installations of the software needed to run the pipeline (namely singularity and nextflow).  To run the test datasets, use the [run_test](./run_test) or [run_test_github](./run_test_github) scripts.  [See here](https://github.com/stenglein-lab/general_pipeline_instructions) for more information on dependencies and running test datasets.
 
 ### Output
 
