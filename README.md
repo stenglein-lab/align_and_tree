@@ -8,7 +8,7 @@ This workflow should work for either nucleotide or protein sequences, because ne
 ### Important caveats
 
 - It is the user's responsibility to manually inspect and validate sequence alignments produced by MAFFT. The workflow assumes they are good and just proceeds with tree inference.  The pipeline is not (currently) designed to make trees starting with alignments, but it could be modified to do this.
-- The pipeline uses basic default settings for both MAFFT and iqtree.  The pipeline could be modified by editing the code in [align_and_tree.nf](align_and_tree.nf). 
+- The pipeline uses basic default settings for both MAFFT and iqtree.  The pipeline could be modified by editing the code in [the main nextflow file](main.nf). 
 
 ### Running the pipeline
 
@@ -19,6 +19,10 @@ run stenglein-lab/align_and_tree -profile singularity --fasta my_sequences.fasta
 ```
 
 See [here](https://github.com/stenglein-lab/general_pipeline_instructions) for more information on how to run this pipeline.
+
+### Running test datasets
+
+The pipeline includes a couple small test datasets: sets of influenza A virus segment 4 (HA) nucleotide and protein RefSeq sequences: N=7 each.  These can be used to confirm that you have correct installations of the software needed to run the pipeline (namely singularity and nextflow).  To run the test datasets, use the [run_test](./run_test) or [run_test_github](./run_test_github) scripts.  [See here](https://github.com/stenglein-lab/general_pipeline_instructions) for more information on dependencies and running test datasets.
 
 ### Output
 
