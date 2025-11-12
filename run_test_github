@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# this runs a simple nextflow workflow
+# that creates alignment(s) and then trees 
+# from one or more sets of sequences 
+#
+# run the test profile from github
+
+nextflow run stenglein-lab/align_and_tree \
+ -profile singularity,test 
