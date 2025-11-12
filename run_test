@@ -6,6 +6,6 @@
 #
 # run the test profile 
 
-nextflow run align_and_tree.nf \
+nextflow run main.nf \
  -resume \
  -profile singularity,test 

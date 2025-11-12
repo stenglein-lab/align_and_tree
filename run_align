@@ -4,7 +4,7 @@
 # that creates alignment(s) and then trees 
 # from one or more sets of sequences 
 
-nextflow run align_and_tree.nf \
+nextflow run main.nf \
  -resume \
  -profile singularity \
  --fasta '../input/*CDS.fasta'
