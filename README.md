@@ -15,7 +15,7 @@ This workflow should work for either nucleotide or protein sequences, because ne
 A basic command line to run this pipeline would be (assuming the existence of input file of unaligned sequences named `my_sequences.fasta`):
 
 ```
-run stenglein-lab/align_and_tree -profile singularity --fasta my_sequences.fasta
+nextflow run stenglein-lab/align_and_tree -profile singularity --fasta my_sequences.fasta
 ```
 
 See [here](https://github.com/stenglein-lab/general_pipeline_instructions) for more information on how to run this pipeline.
@@ -48,7 +48,7 @@ For example:
 
 ```
 # align and make tree from sequences collapsed at a 99% pariwse identity level
-run stenglein-lab/align_and_tree \
+nextflow run stenglein-lab/align_and_tree \
   -profile singularity \
   --fasta my_sequences.fasta \
   --collapse_sequences \
