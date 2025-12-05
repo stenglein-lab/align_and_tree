@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# this runs a simple nextflow workflow
+# that creates alignment(s) and then trees 
+# from one or more sets of sequences 
+#
+# run the test profile 
+
+nextflow run main.nf \
+ -resume \
+ --collapse_sequences \
+ --sequence_type nt \
+ --collapse_threshold 0.99 \
+ -profile singularity,test 

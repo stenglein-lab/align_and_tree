@@ -38,6 +38,24 @@ The main outputs will be placed in `results/alignments` and `results/trees` sub-
 
 The output directory name can be [overriden](https://www.nextflow.io/docs/latest/workflow.html#publishing-files) using the `-output-dir` command line parameter.
 
+### Optional sequence collapsing prior to alignment
+
+You can optionally collapse sequences prior to alignment using [cd-hit](https://academic.oup.com/bioinformatics/article/22/13/1658/194225) or [cd-hit-est](https://github.com/weizhongli/cdhit/wiki).  The collapsed sequences will be aligned.
+
+To do this, specify `--collapse_sequences` on the nextflow command line.  You will also need to specify whether the input fasta files contain nucleotide or protein sequences so the pipeline knows to use cd-hit or cd-hit-est by specifying one of `--sequence_type nt` or `--sequence_type aa`.  You can also specify a pairwide identity threshold for collapsing (input to the cd-hit -c parameter).  Do this using the `--collapse_threshold` parameter (default = 0.98).  
+
+For example:
+
+```
+# align and make tree from sequences collapsed at a 99% pariwse identity level
+run stenglein-lab/align_and_tree \
+  -profile singularity \
+  --fasta my_sequences.fasta \
+  --collapse_sequences \
+  --sequence_type nt \
+  --collapse_threshold 0.99
+```
+
 ### Dependencies
 
 This workflow uses - and requires - nextflow and singularity to handle dependencies (i.e. MAFFT and iqtree).  See [here](https://github.com/stenglein-lab/general_pipeline_instructions?tab=readme-ov-file#Software-dependencies) for more information on the associated requirements.
