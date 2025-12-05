@@ -40,7 +40,7 @@ The output directory name can be [overriden](https://www.nextflow.io/docs/latest
 
 ### Optional sequence collapsing prior to alignment
 
-You can optionally collapse sequences prior to alignment using [cd-hit](https://academic.oup.com/bioinformatics/article/22/13/1658/194225) or [cd-hit-est](https://github.com/weizhongli/cdhit/wiki).  The collapsed sequences will be aligned.
+You can optionally collapse sequences prior to alignment using [cd-hit](https://academic.oup.com/bioinformatics/article/22/13/1658/194225) or [cd-hit-est](https://github.com/weizhongli/cdhit/wiki).  This produces a subset of representatives sequences that each represent clusters of sequences that share some level of pairwise identity. The representative sequences will be aligned.
 
 To do this, specify `--collapse_sequences` on the nextflow command line.  You will also need to specify whether the input fasta files contain nucleotide or protein sequences so the pipeline knows to use cd-hit or cd-hit-est by specifying one of `--sequence_type nt` or `--sequence_type aa`.  You can also specify a pairwide identity threshold for collapsing (input to the cd-hit -c parameter).  Do this using the `--collapse_threshold` parameter (default = 0.98).  
 
