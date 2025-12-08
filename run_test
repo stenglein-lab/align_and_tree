@@ -8,4 +8,4 @@
 
 nextflow run main.nf \
  -resume \
- -profile singularity,test 
+ -profile singularity,test $*

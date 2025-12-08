@@ -67,6 +67,32 @@ nextflow run stenglein-lab/align_and_tree \
   --collapse_threshold 0.99
 ```
 
+### Optional alignment trimming
+
+You can optionally trim alignments using the [clipkit tool](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001007).  The trimmed alignment will be used for tree building.
+
+To trim alignments, use the `--trim_alignments` command line parameter.  Clipkit offers several trimmimg modes, [described in more detail here](https://jlsteenwyk.com/ClipKIT/advanced/index.html#modes).  By default, this pipeline uses the "kpi-smart-gap" trimming mode: keep only parsimony informative sites and trim gappy columns using a dynamic threshold.  You can change the trimming mode using the `--clipkit_trim_mode` command line parameter.
+
+For example:
+
+```
+nextflow run stenglein-lab/align_and_tree \
+  -profile singularity \
+  --fasta my_sequences.fasta \
+  --trim_alignments 
+```
+
+or
+
+```
+nextflow run stenglein-lab/align_and_tree \
+  -profile singularity \
+  --fasta my_sequences.fasta \
+  --trim_alignments \
+  --clipkit_trim_mode "smart-gap"
+```
+
+
 ### Dependencies
 
 This workflow uses - and requires - nextflow and singularity to handle dependencies (i.e. MAFFT and iqtree).  See [here](https://github.com/stenglein-lab/general_pipeline_instructions?tab=readme-ov-file#Software-dependencies) for more information on the associated requirements.

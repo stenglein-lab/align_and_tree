@@ -103,10 +103,19 @@ workflow alignment_workflow {
     fasta_sequences
 
   main:
+    
     align_sequences(fasta_sequences)
 
+    aligned_output = align_sequences.out.fasta_alignment
+
+    if (params.trim_alignments) {
+       trim_mode = Channel.value(params.clipkit_trim_mode)
+       trim_alignment(align_sequences.out.fasta_alignment, trim_mode)
+       aligned_output = trim_alignment.out.trimmed_alignment
+    }
+
   emit:
-    alignment = align_sequences.out.fasta_alignment
+    alignment = aligned_output
 }
 
 workflow tree_workflow {
@@ -159,7 +168,6 @@ process collapse_sequences {
   rm -f ${new_name}.clstr
   """
 }
-
 // align one set of sequences using MAFFT
 process align_sequences {
   tag "$fasta"
@@ -216,3 +224,32 @@ process build_tree {
 }
 
 
+// trim alignment with clipkit
+process trim_alignment {
+  tag "$alignment"
+  label 'process_medium'
+
+  container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+    'https://depot.galaxyproject.org/singularity/clipkit:2.7.0--pyhdfd78af_0':
+    'quay.io/biocontainers/clipkit:2.7.0--pyhdfd78af_0' }"
+
+  input:
+    path alignment
+    val trim_mode
+
+  output:
+    path "*clipkit.*",   emit: trimmed_alignment
+
+  script:
+
+  // TODO: allow 
+  def extension = alignment.extension
+  def new_name  = alignment.name.replaceAll(/\Q${extension}\E$/, "clipkit.${extension}")
+  """
+    clipkit \\
+      $alignment \\
+      -m $trim_mode \\
+      -o $new_name \\
+      -t ${task.cpus} 
+  """
+}
