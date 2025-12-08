@@ -20,6 +20,17 @@ nextflow run stenglein-lab/align_and_tree -profile singularity --fasta my_sequen
 
 See [here](https://github.com/stenglein-lab/general_pipeline_instructions) for more information on how to run this pipeline.
 
+#### Multiple input files
+
+It is possible to input multiple fasta files to the pipeline, each of which will produce a separate alignment and tree.  This can be done using a wildcard in the params.fasta value, for instance:
+
+```
+nextflow run stenglein-lab/align_and_tree -profile singularity --fasta "input/*.fasta"
+```
+
+Note that the wildcard containing params.fasta value must be enclosed in quotes, as [described here](https://www.nextflow.io/docs/latest/reference/channel.html#frompath) and [here](https://www.nextflow.io/docs/latest/cli.html#pipeline-parameters)
+
+
 ### Running test datasets
 
 The pipeline includes a couple small test datasets: sets of influenza A virus segment 4 (HA) [nucleotide](test/influenza_virus_A_HA_nucleotide.fasta) and [protein](test/influenza_virus_A_HA_protein.fasta) RefSeq sequences: N=7 each.  These can be used to confirm that you have correct installations of the software needed to run the pipeline (namely singularity and nextflow).  To run the test datasets, use the [run_test](./run_test) or [run_test_github](./run_test_github) scripts.  [See here](https://github.com/stenglein-lab/general_pipeline_instructions) for more information on dependencies and running test datasets.  These test datasets take ~5 minutes to run on a typical linux multicore server.
