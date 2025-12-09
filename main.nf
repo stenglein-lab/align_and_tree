@@ -123,7 +123,8 @@ workflow tree_workflow {
     alignment
 
   main:
-    build_tree(alignment)
+    count_fasta(alignment)
+    build_tree(count_fasta.out.fasta_with_count)
 
   emit:
     contree  = build_tree.out.contree
@@ -168,6 +169,7 @@ process collapse_sequences {
   rm -f ${new_name}.clstr
   """
 }
+
 // align one set of sequences using MAFFT
 process align_sequences {
   tag "$fasta"
@@ -193,6 +195,24 @@ process align_sequences {
   """
 }
 
+// Count # of sequences in a fasta file
+process count_fasta {
+  tag "$fasta"
+  label 'process_low'
+
+  input:
+    path fasta
+
+  output:
+    tuple path ("$fasta"), stdout, emit: fasta_with_count
+
+  script:
+  """
+  grep -c \\> $fasta | tr -d '\n'
+  """
+}
+
+
 // make a tree using iqtree v3
 process build_tree {
   tag "$alignment"
@@ -203,7 +223,7 @@ process build_tree {
     'quay.io/biocontainers/iqtree:3.0.1--h503566f_0' }"
 
   input:
-    path alignment
+    tuple path (alignment), val(num_seqs)
 
   output:
     path "*.contree",   emit: contree
@@ -212,11 +232,14 @@ process build_tree {
     path "*.log",       emit: log
 
   script:
-  mem = task.memory.getMega() + "M"
+  mem       = task.memory.getMega() + "M"
+  // only bootstrap if at least 4 sequences
+  bootstrap = num_seqs >= 4 ? "-B 1000" : ""
+
   """
     iqtree -s ${alignment} \\
       -m MFP \\
-      -B 1000 \\
+      $bootstrap \\
       -alrt 1000 \\
       -T ${task.cpus} \\
       -mem ${mem}
