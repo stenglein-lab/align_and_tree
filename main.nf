@@ -226,7 +226,7 @@ process build_tree {
     tuple path (alignment), val(num_seqs)
 
   output:
-    path "*.contree",   emit: contree
+    path "*.contree",   emit: contree, optional: true
     path "*.iqtree",    emit: iqtree
     path "*.treefile",  emit: treefile
     path "*.log",       emit: log
