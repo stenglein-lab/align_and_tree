@@ -234,7 +234,8 @@ process build_tree {
   script:
   mem       = task.memory.getMega() + "M"
   // only bootstrap if at least 4 sequences
-  bootstrap = num_seqs >= 4 ? "-B 1000" : ""
+  int int_num_seqs = Integer.parseInt(num_seqs)
+  bootstrap = int_num_seqs >= 4 ? "-B 1000" : ""
 
   """
     iqtree -s ${alignment} \\
