@@ -191,7 +191,7 @@ process align_sequences {
   def new_name  = fasta.name.replaceAll(/\Q${extension}\E$/, "mafft.${extension}")
   // TODO: setup/control memory and cpu usage
   """
-  mafft ${fasta} > ${new_name}
+  mafft --reorder ${fasta} > ${new_name}
   """
 }
 
