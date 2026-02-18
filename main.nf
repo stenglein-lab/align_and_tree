@@ -192,6 +192,10 @@ process align_sequences {
   // TODO: setup/control memory and cpu usage
   """
   mafft --adjustdirection --reorder ${fasta} > ${new_name}
+  # this sed replaces _R_ at the beginning of a sequence name
+  # _R_ is introduced by mafft when it reverse complements a sequence
+  # see: https://mafft.cbrc.jp/alignment/software/adjustdirection.html
+  sed -i 's/^>_R_/>/' ${new_name}
   """
 }
 
